@@ -1,0 +1,203 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/artworks/ArtworkPage.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.ArtworkPage_container__nftlh {
+  background-color: #F9F5F0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  color: #5D5753;
+  padding: 32px 20px 56px;
+}
+
+.ArtworkPage_title__4knYk {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 500;
+  color: #4E423E;
+}
+
+.ArtworkPage_subtitle__dLNoZ {
+  margin: 12px auto 34px;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #7A6E67;
+  max-width: 760px;
+}
+
+.ArtworkPage_errorText__CMdi5 {
+  margin: 0 0 12px;
+  color: #B2564A;
+}
+
+.ArtworkPage_galleryGrid__qcFAg {
+  width: 100%;
+  max-width: 1150px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 26px;
+  gap: 26px;
+}
+
+.ArtworkPage_artCard___SgTI {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(58, 44, 39, 0.08);
+  position: relative;
+}
+
+.ArtworkPage_favoriteButton__QQ9K6 {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 0;
+  background: #FFFFFF;
+  color: #151515;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+
+.ArtworkPage_favoriteButton__QQ9K6 svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ArtworkPage_artImageWrap__GAbHp {
+  height: 290px;
+  background: #D8CFC8;
+}
+
+.ArtworkPage_artImage__K_mEY {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ArtworkPage_artImagePlaceholder__uswng {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6F615A;
+  font-size: 1.1rem;
+  background: linear-gradient(145deg, #B76626 0%, #95541E 100%);
+}
+
+.ArtworkPage_artCardBody__yS_iO {
+  padding: 20px 22px 24px;
+}
+
+.ArtworkPage_artTitle__wMip_ {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #4E423E;
+}
+
+.ArtworkPage_artDescription__PXjDI {
+  margin: 10px 0 18px;
+  color: #7C6E66;
+  font-size: 1.02rem;
+  min-height: 46px;
+}
+
+.ArtworkPage_selectButton__7SeJo {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #D0AA2F;
+  font-size: 1.95rem;
+  cursor: pointer;
+}
+
+.ArtworkPage_selectCircle__wgphi {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 3px solid #D0AA2F;
+  flex-shrink: 0;
+}
+
+.ArtworkPage_shuffleButton__0d758 {
+  margin: 40px auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #CAA523;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(202, 165, 35, 0.3);
+}
+
+.ArtworkPage_shuffleButton__0d758:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ArtworkPage_shuffleIcon__ARYuV {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+}
+
+.ArtworkPage_shuffleIcon__ARYuV svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .ArtworkPage_galleryGrid__qcFAg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+  .ArtworkPage_galleryGrid__qcFAg {
+    grid-template-columns: 1fr;
+  }
+
+  .ArtworkPage_title__4knYk {
+    font-size: 2rem;
+  }
+
+  .ArtworkPage_subtitle__dLNoZ {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+
+  .ArtworkPage_artImageWrap__GAbHp {
+    height: 240px;
+  }
+
+  .ArtworkPage_artTitle__wMip_ {
+    font-size: 1.6rem;
+  }
+
+  .ArtworkPage_selectButton__7SeJo {
+    font-size: 1.45rem;
+  }
+}
+
