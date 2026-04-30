@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './FeelingPage.module.css';
 
 type SpeechRecognitionAlternative = {
@@ -36,26 +37,30 @@ declare global {
   }
 }
 
+const emotions = ["Anxiety", "Overwhelmed", "Grief", "Rage", "Numbness", "Shame", "self-blame"];
+
 const FeelingPage = () => {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
+  const shouldKeepListeningRef = useRef(true);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
-  const shouldKeepListeningRef = useRef(false);
   const baseTextRef = useRef('');
   const committedVoiceTextRef = useRef('');
 
-  const emotions = [
-    'Anxiety',
-    'Overwhelmed',
-    'Grief',
-    'Rage',
-    'Numbness',
-    'Shame',
-    'self-blame',
-  ];
+  useEffect(() => {
+    const savedInput = sessionStorage.getItem('createPageInput');
+    if (savedInput) {
+      setInputValue(savedInput);
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem('createPageInput', inputValue);
+  }, [inputValue]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,7 +75,7 @@ const FeelingPage = () => {
 
     try {
       const query = new URLSearchParams({ text: value }).toString();
-      window.location.href = `/artworks?${query}`;
+            router.push(`/artworks?text=${encodeURIComponent(inputValue)}`);
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to continue to artwork page.';
       setSubmitError(message);

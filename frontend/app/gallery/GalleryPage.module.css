@@ -1,0 +1,76 @@
+.container {
+  padding: 2rem;
+  background-color: #f5f2eb;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #4d433c;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallerySection {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #504538;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0dbd1;
+  padding-bottom: 0.5rem;
+}
+
+.artGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.artCard {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.artCard:hover {
+  transform: translateY(-5px);
+}
+
+.artImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.artInfo {
+  padding: 1rem;
+}
+
+.artTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4d433c;
+  margin: 0;
+}
+
+.artArtist {
+  font-size: 0.9rem;
+  color: #8f8173;
+  margin-top: 0.25rem;
+}
+
+
+.emptyMessage {
+  color: #8f8173;
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f7f2;
+  border-radius: 8px;
+}

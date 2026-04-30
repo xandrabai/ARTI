@@ -1,0 +1,80 @@
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/gallery/GalleryPage.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.GalleryPage_container__WM_lv {
+  padding: 2rem;
+  background-color: #f5f2eb;
+  min-height: 100vh;
+}
+
+.GalleryPage_title__vyiWx {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #4d433c;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.GalleryPage_gallerySection__WO2oz {
+  margin-bottom: 3rem;
+}
+
+.GalleryPage_sectionTitle__yRbuy {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #504538;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0dbd1;
+  padding-bottom: 0.5rem;
+}
+
+.GalleryPage_artGrid__t3pEu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.GalleryPage_artCard__abKlR {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.GalleryPage_artCard__abKlR:hover {
+  transform: translateY(-5px);
+}
+
+.GalleryPage_artImage__Qu5De {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.GalleryPage_artInfo__gUBU7 {
+  padding: 1rem;
+}
+
+.GalleryPage_artTitle__KKAkF {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4d433c;
+  margin: 0;
+}
+
+.GalleryPage_artArtist__v12No {
+  font-size: 0.9rem;
+  color: #8f8173;
+  margin-top: 0.25rem;
+}
+
+
+.GalleryPage_emptyMessage__QU0lT {
+  color: #8f8173;
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f7f2;
+  border-radius: 8px;
+}
+

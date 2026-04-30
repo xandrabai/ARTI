@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './ArtworkPage.module.css';
 
 type SuggestedArtwork = {
@@ -13,12 +14,46 @@ type SuggestedArtwork = {
   is_public_domain: boolean;
 };
 
+const getArtworkCacheKey = (inputText: string) => `arti.artworks.${encodeURIComponent(inputText)}`;
+
 const ArtworkPage = () => {
+  const router = useRouter();
   const [text, setText] = useState('');
+  const [liked, setLiked] = useState<number[]>([]);
 
   const [artworks, setArtworks] = useState<SuggestedArtwork[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  useEffect(() => {
+    const initialLiked = JSON.parse(localStorage.getItem('likedArtworks') || '[]').map((a: SuggestedArtwork) => a.id);
+    setLiked(initialLiked);
+  }, []);
+
+  const toggleLike = (artwork: SuggestedArtwork, event: React.MouseEvent) => {
+    event.stopPropagation();
+    const likedArtworks = JSON.parse(localStorage.getItem('likedArtworks') || '[]');
+    const isLiked = likedArtworks.some((a: SuggestedArtwork) => a.id === artwork.id);
+    let updatedLikedArtworks;
+    if (isLiked) {
+      updatedLikedArtworks = likedArtworks.filter((a: SuggestedArtwork) => a.id !== artwork.id);
+      setLiked(liked.filter(id => id !== artwork.id));
+    } else {
+      updatedLikedArtworks = [...likedArtworks, artwork];
+      setLiked([...liked, artwork.id]);
+    }
+    localStorage.setItem('likedArtworks', JSON.stringify(updatedLikedArtworks));
+  };
+
+  const openArtworkDetails = (artwork: SuggestedArtwork) => {
+    const encodedArtwork = encodeURIComponent(JSON.stringify(artwork));
+    router.push(`/artworks/paintingdetails?id=${artwork.id}&data=${encodedArtwork}`);
+  };
+
+  const openPaintingCanvas = (artwork: SuggestedArtwork) => {
+    const encodedArtwork = encodeURIComponent(JSON.stringify(artwork));
+    router.push(`/canvas?id=${artwork.id}&data=${encodedArtwork}`);
+  };
 
   const fetchSuggestions = async (inputText: string) => {
     setIsLoading(true);
@@ -42,7 +77,12 @@ const ArtworkPage = () => {
         artworks?: SuggestedArtwork[];
       };
 
-      setArtworks(payload.artworks ?? []);
+      const nextArtworks = payload.artworks ?? [];
+      setArtworks(nextArtworks);
+
+      if (inputText) {
+        sessionStorage.setItem(getArtworkCacheKey(inputText), JSON.stringify(nextArtworks));
+      }
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to fetch artwork suggestions.';
       setSubmitError(message);
@@ -57,20 +97,18 @@ const ArtworkPage = () => {
     const nextText = params.get('text')?.trim() ?? '';
 
     if (!nextText) {
-      window.location.replace('/');
+      router.replace('/');
       return;
     }
 
     setText(nextText);
-  }, []);
-
-  useEffect(() => {
-    if (!text) {
-      return;
+    const cachedArtworks = sessionStorage.getItem(getArtworkCacheKey(nextText));
+    if (cachedArtworks) {
+      setArtworks(JSON.parse(cachedArtworks));
+    } else {
+      fetchSuggestions(nextText);
     }
-
-    void fetchSuggestions(text);
-  }, [text]);
+  }, [router]);
 
   return (
     <div className={styles.container}>
@@ -85,8 +123,26 @@ const ArtworkPage = () => {
       {artworks.length > 0 ? (
         <div className={styles.galleryGrid}>
           {artworks.map((artwork) => (
-            <article key={artwork.id} className={styles.artCard}>
-              <button type="button" className={styles.favoriteButton} aria-label="Save this piece">
+            <article
+              key={artwork.id}
+              className={styles.artCard}
+              tabIndex={0}
+              role="button"
+              aria-label={`View details for ${artwork.title ?? 'this artwork'}`}
+              onClick={() => openArtworkDetails(artwork)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openArtworkDetails(artwork);
+                }
+              }}
+            >
+              <button
+                type="button"
+                className={`${styles.favoriteButton} ${liked.includes(artwork.id) ? styles.liked : ''}`}
+                aria-label="Save this piece"
+                onClick={(event) => toggleLike(artwork, event)}
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path
                     d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6 6 0 0 1 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"
@@ -112,7 +168,14 @@ const ArtworkPage = () => {
                 <p className={styles.artDescription}>
                   {artwork.artist ? `By ${artwork.artist}` : 'Artist unknown'}
                 </p>
-                <button type="button" className={styles.selectButton}>
+                <button
+                  type="button"
+                  className={styles.selectButton}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    openPaintingCanvas(artwork);
+                  }}
+                >
                   <span>Select This Piece</span>
                   <span className={styles.selectCircle} aria-hidden="true" />
                 </button>

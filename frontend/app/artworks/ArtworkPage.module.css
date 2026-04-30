@@ -45,24 +45,59 @@
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(58, 44, 39, 0.08);
   position: relative;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.artCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(58, 44, 39, 0.12);
+}
+
+.artCard:focus-visible {
+  outline: 3px solid #CAA523;
+  outline-offset: 3px;
 }
 
 .favoriteButton {
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 0;
-  background: #FFFFFF;
-  color: #151515;
-  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #b0a191;
+  border: none;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
   z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favoriteButton.liked {
+  color: #ff6b6b;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.favoriteButton:hover {
+  background-color: white;
+  box-shadow: 0 16px 32px rgba(58, 44, 39, 0.12);
 }
 
 .favoriteButton svg {

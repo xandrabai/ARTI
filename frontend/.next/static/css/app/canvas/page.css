@@ -1,0 +1,347 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./components/PaintingCanvas.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.PaintingCanvas_container__vepQ4 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.PaintingCanvas_drawingLayer___7O6i {
+  position: relative;
+  width: 100%;
+}
+
+.PaintingCanvas_sketchImage__PoJ5s {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) opacity(0.2) contrast(150%);
+}
+
+.PaintingCanvas_canvas__BQ2Lt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.PaintingCanvas_brushBar__ic8QL {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  background: rgba(248, 244, 236, 0.95);
+  border: 1px solid #d8cebf;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.PaintingCanvas_controlGroup___qRPQ {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.PaintingCanvas_controlGroupWide__sr3CO {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.PaintingCanvas_controlLabel__srPR6 {
+  font-size: 0.82rem;
+  color: #615748;
+}
+
+.PaintingCanvas_colorInput__mQC4L {
+  inline-size: 44px;
+  block-size: 34px;
+  border: 1px solid #bca887;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0;
+}
+
+.PaintingCanvas_slider__MgCNZ {
+  width: 100%;
+  accent-color: #7e6f56;
+}
+
+.PaintingCanvas_sizeValue__57jV3 {
+  min-width: 48px;
+  text-align: right;
+  font-size: 0.86rem;
+  color: #615748;
+}
+
+.PaintingCanvas_actionGroup__Ujpx8 {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.PaintingCanvas_secondaryButton__fOvw5 {
+  border: 1px solid #bca887;
+  background: #f4ede1;
+  color: #3b342b;
+  border-radius: 10px;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .PaintingCanvas_brushBar__ic8QL {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .PaintingCanvas_controlGroup___qRPQ {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .PaintingCanvas_controlGroupWide__sr3CO {
+    grid-template-columns: 1fr;
+  }
+
+  .PaintingCanvas_sizeValue__57jV3 {
+    text-align: left;
+  }
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/canvas/PaintingCanvasPage.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+.PaintingCanvasPage_page__oT_wz {
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 20px 96px;
+  background: #efebe6;
+  border: 1px solid #d9d3ca;
+  border-radius: 14px;
+  color: #4d433c;
+}
+
+.PaintingCanvasPage_headerBlock__mbfCv {
+  text-align: center;
+  margin: 0 auto 20px;
+}
+
+.PaintingCanvasPage_mainTitle__VyTnj {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  font-weight: 400;
+}
+
+.PaintingCanvasPage_mainSubtitle__qWYAO {
+  margin: 10px 0 0;
+  color: #6c6258;
+  font-size: clamp(0.95rem, 1.7vw, 1.1rem);
+}
+
+.PaintingCanvasPage_canvasCard__eyzWx {
+  background: #f5f1eb;
+  border: 1px solid #ddd5cb;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(60, 48, 43, 0.08);
+}
+
+.PaintingCanvasPage_canvasInfo__MSczO {
+  margin-bottom: 14px;
+}
+
+.PaintingCanvasPage_artTitle__xoWaC {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 500;
+}
+
+.PaintingCanvasPage_artistName__vmA1S {
+  margin: 6px 0 0;
+  color: #6c6258;
+}
+
+.PaintingCanvasPage_canvasArea__FCKRk {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.PaintingCanvasPage_buttonContainer__jHgUz {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.PaintingCanvasPage_returnButton__zmno7 {
+  display: inline-flex;
+  position: fixed;
+  right: 28px;
+  bottom: 16px;
+  border: 0;
+  border-radius: 16px;
+  background: #d2c2a1;
+  color: #2f2a24;
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 1.08rem;
+  text-transform: lowercase;
+  box-shadow: 0 8px 18px rgba(53, 46, 37, 0.18);
+}
+
+.PaintingCanvasPage_saveButton__CffaY {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #f7f2e8;
+  background-color: #4e493a;
+  border: 2px solid #4e493a;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.PaintingCanvasPage_saveButton__CffaY:hover {
+  background-color: #3d352d;
+  border-color: #3d352d;
+}
+
+.PaintingCanvasPage_dontSaveButton__vBAcQ {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #f7f2e8;
+  background-color: #a08a72;
+  border: 2px solid #a08a72;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.PaintingCanvasPage_dontSaveButton__vBAcQ:hover {
+  background-color: #8f7758;
+  border-color: #8f7758;
+}
+
+.PaintingCanvasPage_modalOverlay__Nsv_8 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.PaintingCanvasPage_modal__g4alR {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.PaintingCanvasPage_modal__g4alR h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4d433c;
+  margin-bottom: 1rem;
+}
+
+.PaintingCanvasPage_modal__g4alR p {
+  color: #6e6257;
+  margin-bottom: 2rem;
+}
+
+.PaintingCanvasPage_modalButtons__b7Dge {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.PaintingCanvasPage_confirmButton__ArZBx, .PaintingCanvasPage_cancelButton__PJJtx {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.PaintingCanvasPage_confirmButton__ArZBx {
+  background-color: #ff6b6b;
+  color: #fff;
+}
+
+.PaintingCanvasPage_confirmButton__ArZBx:hover {
+  background-color: #e05252;
+}
+
+.PaintingCanvasPage_cancelButton__PJJtx {
+  background-color: #e0dbd1;
+  color: #4d433c;
+}
+
+.PaintingCanvasPage_cancelButton__PJJtx:hover {
+  background-color: #d3c5b3;
+}
+
+.PaintingCanvasPage_emptyState__rQIp5 {
+  min-height: 65vh;
+  display: flex;
+  place-items: center;
+  color: #6c6258;
+}
+
+@media (max-width: 640px) {
+  .PaintingCanvasPage_page__oT_wz {
+    border-radius: 0;
+    margin: 0;
+    min-height: 100dvh;
+    padding: 20px 12px 88px;
+  }
+
+  .PaintingCanvasPage_canvasCard__eyzWx {
+    padding: 14px;
+  }
+
+  .PaintingCanvasPage_canvasArea__FCKRk,
+  .PaintingCanvasPage_emptyState__rQIp5 {
+    min-height: 58vh;
+  }
+
+  .PaintingCanvasPage_returnButton__zmno7 {
+    right: 12px;
+    bottom: 12px;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+}
+

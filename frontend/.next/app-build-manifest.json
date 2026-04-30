@@ -1,21 +1,22 @@
 {
   "pages": {
+    "/canvas/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/canvas/page.css",
+      "static/chunks/app/canvas/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/gallery/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
-    "/artworks/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/artworks/page.css",
-      "static/chunks/app/artworks/page.js"
+      "static/css/app/gallery/page.css",
+      "static/chunks/app/gallery/page.js"
     ]
   }
 }
