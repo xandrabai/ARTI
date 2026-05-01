@@ -11,6 +11,7 @@ type SuggestedArtwork = {
   image_url: string | null;
   dominant_hue: number | null;
   emotion_category: string;
+  emotion_scores?: string;
   tags: string[];
   is_public_domain: boolean;
 };
@@ -34,6 +35,7 @@ const parseArtwork = (serializedArtwork: string | null): SuggestedArtwork | null
       image_url: parsed.image_url ?? null,
       dominant_hue: typeof parsed.dominant_hue === "number" ? parsed.dominant_hue : null,
       emotion_category: parsed.emotion_category ?? "",
+      emotion_scores: parsed.emotion_scores ?? undefined,
       tags: Array.isArray(parsed.tags) ? parsed.tags : [],
       is_public_domain: Boolean(parsed.is_public_domain),
     };
@@ -73,6 +75,12 @@ export default function PaintingDetailsPage() {
     () => parseArtwork(searchParams.get("data")),
     [searchParams]
   );
+
+  const openPaintingCanvas = (artworkToOpen: SuggestedArtwork | null) => {
+    if (!artworkToOpen) return;
+    const encodedArtwork = encodeURIComponent(JSON.stringify(artworkToOpen));
+    router.push(`/canvas?id=${artworkToOpen.id}&data=${encodedArtwork}`);
+  };
 
   const tags = artwork?.tags?.length ? artwork.tags.slice(0, 3) : ["Renaissance", "Religious Art", "Tempera"];
   const title = artwork?.title ?? "Untitled Artwork";
@@ -157,7 +165,7 @@ export default function PaintingDetailsPage() {
           </details>
 
           <div className={styles.actionRow}>
-            <button type="button" className={styles.primaryAction}>
+            <button type="button" className={styles.primaryAction} onClick={() => openPaintingCanvas(artwork)}>
               <span aria-hidden="true">&lt;3</span>
               <span>This is the one!</span>
             </button>

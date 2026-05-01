@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PaintingCanvas, { PaintingCanvasRef } from "../../components/PaintingCanvas";
-import { saveArtwork } from "../../lib/indexedDb";
+import { saveArtwork, getArtworkById } from "../../lib/indexedDb";
 import styles from "./PaintingCanvasPage.module.css";
 
 type SuggestedArtwork = {
@@ -11,39 +11,35 @@ type SuggestedArtwork = {
   title: string | null;
   artist: string | null;
   image_url: string | null;
+  original_image_url?: string | null;
   dominant_hue: number | null;
   emotion_category: string;
+  emotion_scores?: string;
   tags: string[];
   is_public_domain: boolean;
 };
 
 const hueToBrushColor = (hue: number | null): string => {
-  if (hue === null) {
-    return "#8f7758";
-  }
-
+  if (hue === null) return "#8f7758";
   return `hsl(${Math.round(hue)} 62% 42%)`;
 };
 
 const parseArtwork = (serializedArtwork: string | null): SuggestedArtwork | null => {
-  if (!serializedArtwork) {
-    return null;
-  }
+  if (!serializedArtwork) return null;
 
   try {
     const parsed = JSON.parse(decodeURIComponent(serializedArtwork)) as SuggestedArtwork;
-
-    if (typeof parsed?.id !== "number") {
-      return null;
-    }
+    if (typeof parsed?.id !== "number") return null;
 
     return {
       id: parsed.id,
       title: parsed.title ?? null,
       artist: parsed.artist ?? null,
-      image_url: parsed.image_url ?? null,
+      image_url: parsed.original_image_url ?? parsed.image_url ?? null,
+      original_image_url: parsed.original_image_url,
       dominant_hue: typeof parsed.dominant_hue === "number" ? parsed.dominant_hue : null,
       emotion_category: parsed.emotion_category ?? "",
+      emotion_scores: parsed.emotion_scores ?? undefined,
       tags: Array.isArray(parsed.tags) ? parsed.tags : [],
       is_public_domain: Boolean(parsed.is_public_domain),
     };
@@ -58,23 +54,60 @@ export default function PaintingCanvasPage() {
   const canvasRef = useRef<PaintingCanvasRef>(null);
   const [showDontSaveModal, setShowDontSaveModal] = useState(false);
   const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [canvasImageUrl, setCanvasImageUrl] = useState<string | null>(null);
+  const [initialDrawing, setInitialDrawing] = useState<string | null>(null);
 
   const artwork = useMemo(
     () => parseArtwork(searchParams.get("data")),
     [searchParams]
   );
 
+  useEffect(() => {
+    const resume = searchParams.get("resume");
+    const artworkId = searchParams.get("id");
+
+    // For resume mode, use the original_image_url (reference artwork) as the background
+    // For new paintings, use image_url (which parseArtwork sets to original_image_url if available)
+    if (resume === "true") {
+      setCanvasImageUrl(artwork?.original_image_url ?? artwork?.image_url ?? null);
+    } else {
+      setCanvasImageUrl(artwork?.image_url ?? null);
+    }
+
+    // If resuming, load the user's saved painting strokes to display on the canvas
+    if (resume === "true" && artworkId) {
+      getArtworkById(Number(artworkId)).then((saved) => {
+        if (saved?.image_url) {
+          setInitialDrawing(saved.image_url);
+        }
+      }).catch(() => {
+        // If error, just continue without the saved drawing
+      });
+    }
+  }, [artwork]);
+
   const handleSave = async () => {
     if (!artwork) return;
 
-    const imageDataUrl = canvasRef.current?.getCanvasData();
+    const resume = searchParams.get("resume");
+    let imageDataUrl: string | undefined;
+    
+    if (resume === "true") {
+      // When resuming, save only the canvas drawing without the reference composite
+      imageDataUrl = canvasRef.current?.getCanvasDataOnly();
+    } else {
+      // For new paintings, composite the reference with the drawing
+      imageDataUrl = canvasRef.current?.getCanvasData();
+    }
+    
     if (!imageDataUrl) return;
 
     if (typeof window === 'undefined') return;
 
     const newArtwork = {
       ...artwork,
-      id: Date.now(), 
+      id: Date.now(),
+      original_image_url: artwork.image_url,
       image_url: imageDataUrl,
     };
 
@@ -107,7 +140,7 @@ export default function PaintingCanvasPage() {
         if (canvasRef.current?.isDrawing() === false) {
           handleSave();
         }
-      }, 5000); // 5 seconds
+      }, 5000);
     };
 
     const handleInteraction = () => {
@@ -116,7 +149,6 @@ export default function PaintingCanvasPage() {
 
     window.addEventListener('pointerdown', handleInteraction);
     window.addEventListener('keydown', handleInteraction);
-
     startAutoSaveTimer();
 
     return () => {
@@ -146,8 +178,8 @@ export default function PaintingCanvasPage() {
         </div>
 
         <div className={styles.canvasArea}>
-          {artwork?.image_url ? (
-            <PaintingCanvas ref={canvasRef} imageUrl={artwork.image_url} alt={title} defaultColor={defaultBrushColor} />
+          {canvasImageUrl ? (
+            <PaintingCanvas ref={canvasRef} imageUrl={canvasImageUrl} alt={title} defaultColor={defaultBrushColor} initialDrawing={initialDrawing ?? undefined} />
           ) : (
             <div className={styles.emptyState}>No image is available for this artwork.</div>
           )}
@@ -163,27 +195,19 @@ export default function PaintingCanvasPage() {
               router.back();
               return;
             }
-
             router.push("/artworks");
           }}
         >
           Return
         </button>
-        <button
-          type="button"
-          className={styles.saveButton}
-          onClick={handleSave}
-        >
+        <button type="button" className={styles.saveButton} onClick={handleSave}>
           Save
         </button>
-        <button
-          type="button"
-          className={styles.dontSaveButton}
-          onClick={handleDontSave}
-        >
+        <button type="button" className={styles.dontSaveButton} onClick={handleDontSave}>
           Don't Save
         </button>
       </div>
+
       {showDontSaveModal && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>

@@ -28,6 +28,7 @@ type PaintingCanvasProps = {
   imageUrl: string;
   alt?: string;
   defaultColor?: string;
+  initialDrawing?: string;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -80,6 +81,7 @@ const drawStroke = (context: CanvasRenderingContext2D, stroke: Stroke, width: nu
 
 export type PaintingCanvasRef = {
   getCanvasData: () => string | undefined;
+  getCanvasDataOnly: () => string | undefined;
   isDrawing: () => boolean;
 };
 
@@ -87,8 +89,10 @@ const PaintingCanvas = forwardRef<PaintingCanvasRef, PaintingCanvasProps>(({
   imageUrl,
   alt = "Painting sketch reference",
   defaultColor = "#8f7758",
+  initialDrawing,
 }, ref) => {
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const initialDrawingRef = useRef<HTMLImageElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sampleCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const longPressTimerRef = useRef<number | null>(null);
@@ -130,6 +134,13 @@ const PaintingCanvas = forwardRef<PaintingCanvasRef, PaintingCanvasProps>(({
 
       return compositeCanvas.toDataURL("image/png");
     },
+    getCanvasDataOnly: () => {
+      const canvas = canvasRef.current;
+      if (!canvas) {
+        return;
+      }
+      return canvas.toDataURL("image/png");
+    },
     isDrawing: () => isDrawing,
   }));
 
@@ -149,6 +160,12 @@ const PaintingCanvas = forwardRef<PaintingCanvasRef, PaintingCanvasProps>(({
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the initial drawing if it exists
+    const initialDrawingImage = initialDrawingRef.current;
+    if (initialDrawingImage && initialDrawingImage.complete) {
+      context.drawImage(initialDrawingImage, 0, 0, canvas.width, canvas.height);
+    }
 
     for (const stroke of strokesRef.current) {
       drawStroke(context, stroke, canvas.width, canvas.height);
@@ -257,6 +274,23 @@ const PaintingCanvas = forwardRef<PaintingCanvasRef, PaintingCanvasProps>(({
       clearLongPressTimer();
     };
   }, [clearLongPressTimer, imageUrl, syncCanvasSize]);
+
+  useEffect(() => {
+    if (!initialDrawing) {
+      return;
+    }
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      initialDrawingRef.current = img;
+      redrawCanvas();
+    };
+    img.onerror = () => {
+      console.error("Failed to load initial drawing image");
+    };
+    img.src = initialDrawing;
+  }, [initialDrawing, redrawCanvas]);
 
   const handlePointerDown = useCallback((event: React.PointerEvent<HTMLCanvasElement>) => {
     event.preventDefault();

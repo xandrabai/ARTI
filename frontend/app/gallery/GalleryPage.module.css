@@ -16,13 +16,39 @@
   margin-bottom: 3rem;
 }
 
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
 .sectionTitle {
   font-size: 1.8rem;
   font-weight: 500;
   color: #504538;
-  margin-bottom: 1.5rem;
+  margin: 0;
   border-bottom: 2px solid #e0dbd1;
   padding-bottom: 0.5rem;
+  flex: 1;
+}
+
+.toggleButton {
+  background-color: #8f7758;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.toggleButton:hover {
+  background-color: #7a6348;
 }
 
 .artGrid {
@@ -34,19 +60,79 @@
 .artCard {
   background-color: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease-in-out;
+  position: relative;
 }
 
 .artCard:hover {
   transform: translateY(-5px);
 }
 
+.artImageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
 .artImage {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.deleteGalleryButton {
+  background-color: #c8c8c8;
+  color: #4d433c;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.deleteGalleryButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.deleteGalleryButtonActive {
+  background-color: #c94c4c;
+  color: #fff;
+}
+
+.selectCheckbox {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: transparent;
+  color: transparent;
+  border: 2px solid #999;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.selectCheckbox:active {
+  transform: scale(0.95);
+}
+
+.selectCheckboxActive {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: #fff;
 }
 
 .artInfo {
@@ -66,6 +152,21 @@
   margin-top: 0.25rem;
 }
 
+.artLabel {
+  font-size: 0.8rem;
+  color: #a89a8f;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.artMetadata {
+  font-size: 0.8rem;
+  color: #a89a8f;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
 
 .emptyMessage {
   color: #8f8173;
@@ -73,4 +174,78 @@
   padding: 2rem;
   background-color: #f9f7f2;
   border-radius: 8px;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4d433c;
+  margin: 0 0 1rem 0;
+}
+
+.modalText {
+  font-size: 1rem;
+  color: #8f8173;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.modalCancelButton {
+  background-color: #e0dbd1;
+  color: #4d433c;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.modalCancelButton:active {
+  background-color: #d0cbc0;
+}
+
+.modalConfirmButton {
+  background-color: #8f7758;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.modalConfirmButton:active {
+  background-color: #7a6348;
 }

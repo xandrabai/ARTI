@@ -10,8 +10,10 @@ type SuggestedArtwork = {
   image_url: string | null;
   dominant_hue: number | null;
   emotion_category: string;
+  emotion_scores?: string;
   tags: string[];
   is_public_domain: boolean;
+  likedAt?: string;
 };
 
 const getArtworkCacheKey = (inputText: string) => `arti.artworks.${encodeURIComponent(inputText)}`;
@@ -39,7 +41,11 @@ const ArtworkPage = () => {
       updatedLikedArtworks = likedArtworks.filter((a: SuggestedArtwork) => a.id !== artwork.id);
       setLiked(liked.filter(id => id !== artwork.id));
     } else {
-      updatedLikedArtworks = [...likedArtworks, artwork];
+      const artworkWithTimestamp = {
+        ...artwork,
+        likedAt: new Date().toISOString(),
+      };
+      updatedLikedArtworks = [...likedArtworks, artworkWithTimestamp];
       setLiked([...liked, artwork.id]);
     }
     localStorage.setItem('likedArtworks', JSON.stringify(updatedLikedArtworks));

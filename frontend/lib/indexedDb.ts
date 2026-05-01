@@ -42,6 +42,18 @@ export const getCreatedArtworks = async (): Promise<any[]> => {
   });
 };
 
+export const getArtworkById = async (id: number): Promise<any | null> => {
+  const db = await initializeDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction([STORE_NAME], 'readonly');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.get(id);
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result ?? null);
+  });
+};
+
 export const deleteArtwork = async (id: number): Promise<void> => {
   const db = await initializeDB();
   return new Promise((resolve, reject) => {

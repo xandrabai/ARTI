@@ -1,0 +1,337 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/FeelingPage.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.FeelingPage_container__Efbj6 {
+  background-color: #F9F5F0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: sans-serif;
+  color: #5D5753;
+  padding: 32px 20px 56px;
+}
+
+.FeelingPage_title__mIav4 {
+  font-size: 3rem;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.FeelingPage_subtitle__xzxts {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.FeelingPage_inputArea__otCpR {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.FeelingPage_textInput__FXq_3 {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.4;
+  background-color: transparent;
+  min-width: 0;
+  min-height: 1.4em;
+  max-height: 5.6em;
+  overflow-y: hidden;
+  resize: none;
+  padding: 0;
+}
+
+.FeelingPage_voiceButton__YW7tw {
+  background-color: transparent;
+  border: 1px solid #D3CFCB;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #5D5753;
+  white-space: nowrap;
+}
+
+.FeelingPage_voiceButton__YW7tw:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.FeelingPage_voiceButton__YW7tw:hover {
+  background-color: #F0EAE4;
+}
+
+.FeelingPage_voiceButtonActive__9HtBf {
+  background-color: #EAE1D8;
+}
+
+.FeelingPage_submitButton__JMK7t {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 1px solid #D3CFCB;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #5D5753;
+  white-space: nowrap;
+}
+
+.FeelingPage_submitButton__JMK7t:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.FeelingPage_submitButton__JMK7t:hover {
+  background-color: #F0EAE4;
+}
+
+.FeelingPage_buttonIcon__VDsSW {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.FeelingPage_buttonIcon__VDsSW svg {
+  width: 100%;
+  height: 100%;
+}
+
+.FeelingPage_errorText__ByCj4 {
+  margin: 0 0 1rem;
+  color: #B2564A;
+}
+
+.FeelingPage_tagline__fLKhj {
+  font-size: 1rem;
+  margin-top: 24px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.FeelingPage_emotionButtons__BkMsG {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.FeelingPage_emotionButton__hws0j {
+  background-color: #FFFFFF;
+  border: 1px solid #D3CFCB;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #5D5753;
+  transition: background-color 0.2s;
+}
+
+.FeelingPage_emotionButton__hws0j:hover {
+  background-color: #F0EAE4;
+}
+
+.FeelingPage_gallerySection__LzTSv {
+  width: 100%;
+  max-width: 1150px;
+  margin-top: 26px;
+}
+
+.FeelingPage_galleryTitle__5Hw9r {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 500;
+  color: #4E423E;
+}
+
+.FeelingPage_gallerySubtitle__VNUuy {
+  margin: 12px auto 34px;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #7A6E67;
+  max-width: 760px;
+}
+
+.FeelingPage_galleryGrid__FR5Jg {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.FeelingPage_artCard__OeFPH {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(58, 44, 39, 0.08);
+  position: relative;
+}
+
+.FeelingPage_favoriteButton__DPwan {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 0;
+  background: #FFFFFF;
+  color: #151515;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+
+.FeelingPage_favoriteButton__DPwan svg {
+  width: 20px;
+  height: 20px;
+}
+
+.FeelingPage_artImageWrap__fGgsr {
+  height: 290px;
+  background: #D8CFC8;
+}
+
+.FeelingPage_artImage__XbU_Y {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.FeelingPage_artImagePlaceholder__kB_mP {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6F615A;
+  font-size: 1.1rem;
+  background: linear-gradient(145deg, #B76626 0%, #95541E 100%);
+}
+
+.FeelingPage_artCardBody__sQ9YM {
+  padding: 20px 22px 24px;
+}
+
+.FeelingPage_artTitle__PCi_J {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #4E423E;
+}
+
+.FeelingPage_artDescription__V62eB {
+  margin: 10px 0 18px;
+  color: #7C6E66;
+  font-size: 1.02rem;
+  min-height: 46px;
+}
+
+.FeelingPage_selectButton__JDexf {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #D0AA2F;
+  font-size: 1.95rem;
+  cursor: pointer;
+}
+
+.FeelingPage_selectCircle__mOzqZ {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 3px solid #D0AA2F;
+  flex-shrink: 0;
+}
+
+.FeelingPage_shuffleButton__k4Xnm {
+  margin: 40px auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #CAA523;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(202, 165, 35, 0.3);
+}
+
+.FeelingPage_shuffleButton__k4Xnm:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.FeelingPage_shuffleIcon__zxXWI {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+}
+
+.FeelingPage_shuffleIcon__zxXWI svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .FeelingPage_galleryGrid__FR5Jg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+  .FeelingPage_galleryGrid__FR5Jg {
+    grid-template-columns: 1fr;
+  }
+
+  .FeelingPage_galleryTitle__5Hw9r {
+    font-size: 2rem;
+  }
+
+  .FeelingPage_gallerySubtitle__VNUuy {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+
+  .FeelingPage_artImageWrap__fGgsr {
+    height: 240px;
+  }
+
+  .FeelingPage_artTitle__PCi_J {
+    font-size: 1.6rem;
+  }
+
+  .FeelingPage_selectButton__JDexf {
+    font-size: 1.45rem;
+  }
+}

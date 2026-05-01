@@ -32,6 +32,7 @@ export type EmotionArtworkRecord = {
   image_url: string | null;
   dominant_hue: number | null;
   emotion_category: string;
+  emotion_scores?: string;
   tags: string[];
   is_public_domain: boolean;
 };
@@ -94,7 +95,8 @@ const shuffleArray = <T,>(items: T[]): T[] => {
 
 const formatArtworkForSupabase = (
   artwork: AicArtwork,
-  emotion: MoodKey
+  emotion: MoodKey,
+  emotionScores?: string
 ): EmotionArtworkRecord => {
   return {
     id: artwork.id,
@@ -106,6 +108,7 @@ const formatArtworkForSupabase = (
         ? Math.round(artwork.color.h)
         : null,
     emotion_category: emotion,
+    emotion_scores: emotionScores,
     tags: artwork.term_titles ?? [],
     is_public_domain: Boolean(artwork.is_public_domain),
   };
@@ -159,9 +162,13 @@ export const processUserVibe = async (text: string): Promise<EmotionArtworkRecor
   }
 
   const aicPayload = (await aicResponse.json()) as AicSearchResponse;
+  const topThreeEmotions = emotions
+    .slice(0, 3)
+    .map((item) => `${item.emotion}:${(item.score * 100).toFixed(1)}`);
+  const emotionScoresString = topThreeEmotions.join("; ");
   const formattedArtworks = (aicPayload.data ?? [])
     .filter((item) => Boolean(item.image_id))
-    .map((artwork) => formatArtworkForSupabase(artwork, moodKey));
+    .map((artwork) => formatArtworkForSupabase(artwork, moodKey, emotionScoresString));
 
   console.log(
     `[${requestTime}] [processUserVibe] artwork retrieval: received ${formattedArtworks.length} artworks with images`
